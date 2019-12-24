@@ -13,8 +13,15 @@ app.get("/blog2", function(requisicao, resposta){
     resposta.send("Blog");
 });
 
+//Rota com Query Paramns
 app.get("/canal/youtube", function(requisicao, resposta){
-    resposta.send("Canal Youtube");
+    var canal = requisicao.query["canal"];
+
+    if(canal){
+        resposta.send(canal);
+    }else{
+        resposta.send("Nenhum canal fornecido!");
+    }
 });
 
 //Rota com parametro obrigatório
