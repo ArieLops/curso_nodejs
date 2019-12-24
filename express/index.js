@@ -9,12 +9,33 @@ app.get("/", function(requisicao, resposta){
     resposta.send("Bem vindo!");
 });
 
-app.get("/blog", function(requisicao, resposta){
+app.get("/blog2", function(requisicao, resposta){
     resposta.send("Blog");
 });
 
 app.get("/canal/youtube", function(requisicao, resposta){
     resposta.send("Canal Youtube");
+});
+
+//Rota com parametro obrigatório
+app.get("/ola/:nome/:empresa", function(requisicao, resposta){
+    //Req => Dados enviados pelo usuário
+    //Res => Resposta que vai ser enviada para o usuário
+    var nome = requisicao.params.nome;
+    var empresa = requisicao.params.empresa;
+
+    resposta.send("<h1>Oi " + nome + " do(a) " + empresa + " </h1>");
+});
+
+//Rota com parametro NÃO obrigatório
+app.get("/blog/:artigo?", function(requisicao, resposta){
+    var artigo = requisicao.params.artigo;
+
+    if(artigo){
+        resposta.send("<h2>Artigo: " + artigo + " </h2>");
+    }else{
+        resposta.send("<h3>Bem vindo ao blog!</h3>");
+    }
 });
 
 //Criação do servidor
